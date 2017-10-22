@@ -29,7 +29,7 @@ public class UserController {
 		return userService.findAll();
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method=RequestMethod.GET)
 	public User getById(@PathVariable("id") int id) {
 		return userService.findById(id);
 	}

@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -41,7 +42,7 @@ public class User{
 	
 	@ManyToOne(targetEntity=Role.class, fetch=FetchType.LAZY)
 	@JoinColumn(name = "role_id")
-	@JsonIgnore
+	@JsonBackReference
 	private Role role;
 	
 	public User() {

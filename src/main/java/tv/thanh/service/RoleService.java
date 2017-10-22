@@ -20,5 +20,5 @@ public class RoleService {
 	public Role findById(int id) {
 		return roleRepository.findOne(id);
 	}
-
+	
 }
