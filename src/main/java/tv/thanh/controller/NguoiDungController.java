@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -63,5 +64,11 @@ public class NguoiDungController {
 			}
 		}
 		return ketqua;
+	}
+	
+	@RequestMapping(value="/themnguoidung",method=RequestMethod.POST)
+	public NguoiDung addNguoiDung(@RequestBody NguoiDung nguoidung) {
+		System.out.println(nguoidung.getTendangnhap());
+		return null;
 	}
 }

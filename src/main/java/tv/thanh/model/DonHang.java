@@ -50,7 +50,6 @@ public class DonHang {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
-	@JsonManagedReference
 	NguoiDung nguoidung;
 	
 	@OneToOne

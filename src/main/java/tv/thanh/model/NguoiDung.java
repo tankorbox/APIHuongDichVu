@@ -50,7 +50,6 @@ public class NguoiDung {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_vaitro",referencedColumnName="id_vaitro")
-	@JsonManagedReference
 	VaiTro vaitro;
 	
 	@OneToMany(cascade=CascadeType.ALL)

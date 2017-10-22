@@ -36,7 +36,6 @@ public class SanPham {
 
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_loaisanpham",referencedColumnName="id_loaisanpham")
-	@JsonManagedReference
 	private LoaiSanPham loaiSanPham;
 	
 	@Column

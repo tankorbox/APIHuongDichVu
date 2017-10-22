@@ -37,7 +37,6 @@ public class ChiTietDonHang {
 	@ManyToOne
 	@JoinColumn
 	@JsonBackReference
-//	@JsonManagedReference
 	private DonHang donhang;
 
 	public ChiTietDonHang() {
