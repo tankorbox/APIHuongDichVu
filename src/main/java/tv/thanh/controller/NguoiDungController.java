@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import tv.thanh.model.NguoiDung;
+import tv.thanh.repository.NguoiDungRepository;
 import tv.thanh.service.NguoiDungService;
 
 @RestController
@@ -19,6 +20,9 @@ import tv.thanh.service.NguoiDungService;
 public class NguoiDungController {
 	@Autowired
 	private NguoiDungService nguoiDungService;
+	
+	@Autowired
+	private NguoiDungRepository nguoiDungRepository;
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public List<NguoiDung> getAll(){
@@ -66,9 +70,28 @@ public class NguoiDungController {
 		return ketqua;
 	}
 	
-	@RequestMapping(value="/themnguoidung",method=RequestMethod.POST)
+	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public NguoiDung addNguoiDung(@RequestBody NguoiDung nguoidung) {
-		System.out.println(nguoidung.getTendangnhap());
-		return null;
+		NguoiDung nd = nguoiDungRepository.findOne(nguoidung.getId());
+		if (nd.getTendangnhap().equals(nguoidung.getTendangnhap())) {
+			System.out.println("username duplicated");
+			return null;
+		}
+		return nguoiDungRepository.save(nguoidung);
+	}
+	
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public NguoiDung updateNguoiDung(@RequestBody NguoiDung nguoidung) {
+		return nguoiDungService.update(nguoidung);
+	}
+	
+	@RequestMapping(value="/delete/{id}",method=RequestMethod.DELETE)
+	public String deleteNguoiDung(@PathVariable("id") int id) {
+		NguoiDung nguoiDung = nguoiDungRepository.findOne(id);
+		if (nguoiDung==null) {
+			return "not found";
+		}
+		nguoiDungRepository.delete(id);
+		return "success";
 	}
 }

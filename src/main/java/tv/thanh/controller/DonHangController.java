@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import tv.thanh.model.DonHang;
+import tv.thanh.repository.DonHangRepository;
 import tv.thanh.service.DonHangService;
 
 @RestController
@@ -17,6 +19,9 @@ import tv.thanh.service.DonHangService;
 public class DonHangController {
 	@Autowired
 	private DonHangService donHangService;
+	
+	@Autowired
+	private DonHangRepository donHangRepository;
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public List<DonHang> getAll(){
@@ -46,5 +51,23 @@ public class DonHangController {
 			if (donHang.getTrangthai()==trangthai) ketqua.add(donHang);
 		}
 		return ketqua;
+	}
+	
+	@RequestMapping(value="/add",method=RequestMethod.POST)
+	public DonHang addDonHang(@RequestBody DonHang donhang) {
+		return donHangRepository.save(donhang);
+	}
+	
+	@RequestMapping(value="/update", method=RequestMethod.POST)
+	public DonHang updateDonHang(@RequestBody DonHang donhang) {
+		return donHangRepository.save(donhang);
+	}
+	
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
+	public String deleteDonHang(@PathVariable("id") int id) {
+		DonHang dh = donHangRepository.findOne(id);
+		if (dh==null) return "not found";
+		donHangRepository.delete(id);
+		return "success";
 	}
 }

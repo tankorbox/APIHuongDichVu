@@ -34,7 +34,7 @@ public class SanPham {
 	String danhsachhinhanh;
 
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="id_loaisanpham",referencedColumnName="id_loaisanpham")
 	private LoaiSanPham loaiSanPham;
 	
