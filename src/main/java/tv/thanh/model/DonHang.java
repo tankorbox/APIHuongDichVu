@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -27,9 +28,6 @@ public class DonHang {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int id;
-
-	@Column
-	private int id_nhanvien;
 
 	@Column
 	private String hoten;
@@ -46,9 +44,6 @@ public class DonHang {
 	@Column
 	private int trangthai;
 
-	@Column
-	private int id_thanhtoan;
-
 	@OneToMany(targetEntity = ChiTietDonHang.class, mappedBy = "donhang")
 //	@JsonBackReference
 	private Set<ChiTietDonHang> chiTietDonHangs;
@@ -57,24 +52,26 @@ public class DonHang {
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	@JsonManagedReference
 	NguoiDung nguoidung;
+	
+	@OneToOne
+	@JoinColumn(name="id_thanhtoan")
+	ThanhToan thanhToan;
 
 	public DonHang() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DonHang(int id, int id_nhanvien, String hoten, String diachi, String sodienthoai,
-			Date ngaykhoitao, int trangthai, int id_thanhtoan, Set<ChiTietDonHang> chiTietDonHangs,
+	public DonHang(int id, String hoten, String diachi, String sodienthoai,
+			Date ngaykhoitao, int trangthai, ThanhToan thanhtoan, Set<ChiTietDonHang> chiTietDonHangs,
 			NguoiDung nguoidung) {
 		super();
 		this.id = id;
-//		this.id_user = id_user;
-		this.id_nhanvien = id_nhanvien;
 		this.hoten = hoten;
 		this.diachi = diachi;
 		this.sodienthoai = sodienthoai;
 		this.ngaykhoitao = ngaykhoitao;
 		this.trangthai = trangthai;
-		this.id_thanhtoan = id_thanhtoan;
+		this.thanhToan = thanhtoan;
 		this.chiTietDonHangs = chiTietDonHangs;
 		this.nguoidung = nguoidung;
 	}
@@ -87,13 +84,7 @@ public class DonHang {
 		this.id = id;
 	}
 
-	public int getId_nhanvien() {
-		return id_nhanvien;
-	}
-
-	public void setId_nhanvien(int id_nhanvien) {
-		this.id_nhanvien = id_nhanvien;
-	}
+	
 
 	public String getHoten() {
 		return hoten;
@@ -135,12 +126,14 @@ public class DonHang {
 		this.trangthai = trangthai;
 	}
 
-	public int getId_thanhtoan() {
-		return id_thanhtoan;
+	
+
+	public ThanhToan getThanhToan() {
+		return thanhToan;
 	}
 
-	public void setId_thanhtoan(int id_thanhtoan) {
-		this.id_thanhtoan = id_thanhtoan;
+	public void setThanhToan(ThanhToan thanhToan) {
+		this.thanhToan = thanhToan;
 	}
 
 	public Set<ChiTietDonHang> getChiTietDonHangs() {

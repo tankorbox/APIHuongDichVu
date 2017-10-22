@@ -26,4 +26,5 @@ public class ChiTietDonHangController {
 	public ChiTietDonHang getById(@PathVariable("id") int id) {
 		return chiTietDonHangService.findById(id);
 	}
+	
 }

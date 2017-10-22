@@ -14,6 +14,7 @@ import tv.thanh.service.DienThoaiService;
 @RestController
 @RequestMapping("dienthoai")
 public class DienThoaiController {
+	
 	@Autowired
 	private DienThoaiService dienThoaiService;
 
@@ -25,5 +26,19 @@ public class DienThoaiController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public DienThoai getById(@PathVariable("id") int id) {
 		return dienThoaiService.findById(id);
+	}
+	
+	
+	@RequestMapping(value = "/byidsanpham/{id_sanpham}", method = RequestMethod.GET)
+	public DienThoai getByIdSanPham(@PathVariable("id_sanpham") int idsp) {
+		List<DienThoai> dienthoais =  dienThoaiService.findAll();
+		DienThoai dt = new DienThoai();
+		for (DienThoai d : dienthoais) {
+			if (idsp==d.getIdsanpham()) {
+				dt = d;
+				break;
+			}
+		}
+		return dt;
 	}
 }

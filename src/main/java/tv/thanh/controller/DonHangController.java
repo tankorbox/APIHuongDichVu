@@ -1,5 +1,6 @@
 package tv.thanh.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,25 @@ public class DonHangController {
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public DonHang getById(@PathVariable("id") int id) {
 		return donHangService.findById(id);
+	}
+	
+	@RequestMapping(value="/getbykhachhangid/{id}", method=RequestMethod.GET)
+	public List<DonHang> getDonHangByKhachHangId(@PathVariable("id") int id) {
+		List<DonHang> donHangs = donHangService.findAll();	
+		List<DonHang> ketqua = new ArrayList<>();
+		for (DonHang donHang : donHangs) {
+			if (donHang.getNguoidung().getId()==id) ketqua.add(donHang);
+		}
+		return ketqua;
+	}
+	
+	@RequestMapping(value="/getbytrangthai/{trangthai}", method=RequestMethod.GET)
+	public List<DonHang> getDonHangByTinhTrang(@PathVariable("trangthai") int trangthai) {
+		List<DonHang> donHangs = donHangService.findAll();	
+		List<DonHang> ketqua = new ArrayList<>();
+		for (DonHang donHang : donHangs) {
+			if (donHang.getTrangthai()==trangthai) ketqua.add(donHang);
+		}
+		return ketqua;
 	}
 }

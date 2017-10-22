@@ -2,8 +2,11 @@ package tv.thanh.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 
-public class HomeController {
+import tv.thanh.model.NguoiDung;
+import tv.thanh.repository.ThemNguoiDungRepository;
 
+public class HomeController {
+	ThemNguoiDungRepository themnguoidung;
 	@GetMapping(value = "/")
 	public String home() {
 		return "hello";

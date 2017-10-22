@@ -31,6 +31,8 @@ public class VaiTro implements Serializable {
 	@Column
 	int id_vaitro;
 	
+	@Column
+	String role;
 	
 	@Column
 	String tenvaitro;
@@ -45,10 +47,21 @@ public class VaiTro implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public VaiTro(int id_vaitro, String tenvaitro) {
+	public VaiTro(int id_vaitro,String role, String tenvaitro) {
 		super();
 		this.id_vaitro = id_vaitro;
+		this.role = role;
 		this.tenvaitro = tenvaitro;
+	}
+	
+	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public VaiTro(int id_vaitro, String tenvaitro, Set<NguoiDung> nguoiDungs) {

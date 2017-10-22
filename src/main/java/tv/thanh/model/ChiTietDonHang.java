@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -21,10 +22,12 @@ public class ChiTietDonHang {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int id;
+
+	@OneToOne
+	@JoinColumn(name = "id_sanpham")
+	SanPham sanpham;
 	
-	@Column	
-	private int id_sanpham;
-	
+
 	@Column
 	private int gia;
 	
@@ -41,10 +44,10 @@ public class ChiTietDonHang {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ChiTietDonHang(int id, int id_sanpham, int gia, int soluong, DonHang donhang) {
+	public ChiTietDonHang(int id, SanPham sanpham, int gia, int soluong, DonHang donhang) {
 		super();
 		this.id = id;
-		this.id_sanpham = id_sanpham;
+		this.sanpham = sanpham;
 		this.gia = gia;
 		this.soluong = soluong;
 		this.donhang = donhang;
@@ -58,12 +61,14 @@ public class ChiTietDonHang {
 		this.id = id;
 	}
 
-	public int getId_sanpham() {
-		return id_sanpham;
+	
+
+	public SanPham getSanpham() {
+		return sanpham;
 	}
 
-	public void setId_sanpham(int id_sanpham) {
-		this.id_sanpham = id_sanpham;
+	public void setSanpham(SanPham sanpham) {
+		this.sanpham = sanpham;
 	}
 
 	public int getGia() {

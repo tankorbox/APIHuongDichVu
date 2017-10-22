@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,8 +17,9 @@ public class DienThoai {
 	@Column
 	int id;
 
-	@Column
-	int idsanpham;
+	@OneToOne
+	@JoinColumn(name = "id_sanpham")
+	SanPham sanpham;
 
 	@Column
 	String kichco;
@@ -67,12 +70,12 @@ public class DienThoai {
 		// TODO Auto-generated constructor stub
 	}
 
-	public DienThoai(int id, int idsanpham, String kichco, String bangtan, String chip, String cpu, String memory,
+	public DienThoai(int id, SanPham sanpham, String kichco, String bangtan, String chip, String cpu, String memory,
 			String ram, String bluetooth, String wlan, String gps, String pin, String manhinh, String sim,
 			String cameratruoc, String camerasau, String quayphim) {
 		super();
 		this.id = id;
-		this.idsanpham = idsanpham;
+		this.sanpham = sanpham;
 		this.kichco = kichco;
 		this.bangtan = bangtan;
 		this.chip = chip;
@@ -98,12 +101,14 @@ public class DienThoai {
 		this.id = id;
 	}
 
-	public int getIdsanpham() {
-		return idsanpham;
+	
+
+	public SanPham getSanpham() {
+		return sanpham;
 	}
 
-	public void setIdsanpham(int idsanpham) {
-		this.idsanpham = idsanpham;
+	public void setSanpham(SanPham sanpham) {
+		this.sanpham = sanpham;
 	}
 
 	public String getKichco() {

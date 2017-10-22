@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,8 +17,9 @@ public class PhuKien {
 	@Column
 	int id;
 
-	@Column
-	int idsanpham;
+	@OneToOne
+	@JoinColumn(name = "id_sanpham")
+	SanPham sanpham;
 
 	@Column
 	String mota;
@@ -31,10 +34,10 @@ public class PhuKien {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PhuKien(int id, int idsanpham, String mota, String loailienquan, String dienthoailienquan) {
+	public PhuKien(int id, SanPham sanpham, String mota, String loailienquan, String dienthoailienquan) {
 		super();
 		this.id = id;
-		this.idsanpham = idsanpham;
+		this.sanpham = sanpham;
 		this.mota = mota;
 		this.loailienquan = loailienquan;
 		this.dienthoailienquan = dienthoailienquan;
@@ -48,12 +51,14 @@ public class PhuKien {
 		this.id = id;
 	}
 
-	public int getIdsanpham() {
-		return idsanpham;
+	
+
+	public SanPham getSanpham() {
+		return sanpham;
 	}
 
-	public void setIdsanpham(int idsanpham) {
-		this.idsanpham = idsanpham;
+	public void setSanpham(SanPham sanpham) {
+		this.sanpham = sanpham;
 	}
 
 	public String getMota() {

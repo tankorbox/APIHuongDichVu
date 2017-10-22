@@ -39,9 +39,6 @@ public class SanPham {
 	@JsonManagedReference
 	private LoaiSanPham loaiSanPham;
 	
-	@OneToOne(cascade=CascadeType.ALL)
-	private DienThoai dienthoai;
-	
 	@Column
 	int luotxem;
 	
@@ -56,6 +53,19 @@ public class SanPham {
 	
 	@Column
 	int type;
+	
+	@OneToOne
+	@JoinColumn(name="id")
+	ChiTietDonHang chiTietDonHang;
+	
+	
+	@OneToOne
+	@JoinColumn(name="id")
+	DienThoai dienThoai;
+	
+	@OneToOne
+	@JoinColumn(name="id")
+	PhuKien phuKien;
 	
 	public SanPham() {
 		// TODO Auto-generated constructor stub
