@@ -48,7 +48,7 @@ public class NguoiDung {
 	private int active;
 	
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="id_vaitro",referencedColumnName="id_vaitro")
 	VaiTro vaitro;
 	

@@ -55,7 +55,7 @@ public class DienThoaiController {
 	}
 
 	@PostMapping("/update")
-	public ResponseEntity<DienThoai> updateDienThoaiById(@RequestBody DienThoai dienthoai) {
+	public ResponseEntity<DienThoai> updateDienThoai(@RequestBody DienThoai dienthoai) {
 		DienThoai dt = dienThoaiRepository.save(dienthoai);
 		return ResponseEntity.ok(dt);
 
