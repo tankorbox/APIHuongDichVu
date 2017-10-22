@@ -34,7 +34,7 @@ public class DienThoaiController {
 		List<DienThoai> dienthoais =  dienThoaiService.findAll();
 		DienThoai dt = new DienThoai();
 		for (DienThoai d : dienthoais) {
-			if (idsp==d.getIdsanpham()) {
+			if (idsp==d.getSanpham().getId()) {
 				dt = d;
 				break;
 			}

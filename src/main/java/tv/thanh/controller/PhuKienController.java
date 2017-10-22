@@ -33,7 +33,7 @@ public class PhuKienController {
 		List<PhuKien> phuKiens =  phuKienService.findAll();
 		PhuKien pk = new PhuKien();
 		for (PhuKien d : phuKiens) {
-			if (idsp== d.getIdsanpham()) {
+			if (idsp== d.getSanpham().getId()) {
 				pk = d;
 				break;
 			}
