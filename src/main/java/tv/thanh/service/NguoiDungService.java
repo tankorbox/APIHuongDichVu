@@ -21,4 +21,14 @@ public class NguoiDungService {
 		return nguoiDungRepository.findOne(id);
 	}
 
+	public void insert(NguoiDung nguoidung) {
+		nguoiDungRepository.save(nguoidung);
+	}
+
+	public NguoiDung update(NguoiDung nguoidung) {
+		return nguoiDungRepository.save(nguoidung);
+	}
+
+	
+	
 }

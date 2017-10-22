@@ -102,6 +102,12 @@ public class VaiTro implements Serializable {
 		this.nguoiDungs = nguoiDungs;
 	}
 	
-	
+//	public void addNguoiDungs(NguoiDung nguoiDung){
+//		if (nguoiDungs.contains(nguoiDung)){
+//			return;
+//		} 
+//		nguoiDungs.add(nguoiDung);
+//		nguoiDung.setVaitro(this);
+//	}
 
 }

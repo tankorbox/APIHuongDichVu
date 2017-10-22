@@ -1,6 +1,8 @@
 package tv.thanh.model;
 
 
+import static org.mockito.Matchers.same;
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;

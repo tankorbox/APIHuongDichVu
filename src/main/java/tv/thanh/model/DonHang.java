@@ -48,7 +48,7 @@ public class DonHang {
 //	@JsonBackReference
 	private Set<ChiTietDonHang> chiTietDonHangs;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_user", referencedColumnName = "id")
 	NguoiDung nguoidung;
 	

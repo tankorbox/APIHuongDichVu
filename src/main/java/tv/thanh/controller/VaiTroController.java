@@ -29,18 +29,15 @@ public class VaiTroController {
 		return vaiTroService.findById(id);
 	}
 	
-	@RequestMapping(value="insert", consumes= {"multipart/form-data"}, method=RequestMethod.POST)
-	public boolean insert(@RequestPart String tenvaitro) {
-		System.out.println(tenvaitro);
-		VaiTro vaiTro = new VaiTro();
-		vaiTro.setTenvaitro(tenvaitro);
-		vaiTroService.insert(vaiTro);
-		return true;
+	@RequestMapping(value="/insert", method=RequestMethod.POST)
+	public VaiTro insert(@RequestBody VaiTro vaitro) {
+		vaiTroService.insert(vaitro);
+		return vaitro;
 	}
 	
-	@RequestMapping(value="/update", consumes= {"multipart/form-data"},method=RequestMethod.POST)
-	public boolean update(@RequestPart String id,@RequestPart String tenvaitro) {
-		
-		return true;
+	@RequestMapping(value="/update",method=RequestMethod.POST)
+	public VaiTro update(@RequestBody VaiTro vaitro) {
+		vaiTroService.update(vaitro);
+		return vaitro;
 	}
 }
