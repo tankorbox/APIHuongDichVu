@@ -47,6 +47,18 @@ public class VaiTro implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+	public VaiTro(int id_vaitro, String role, String tenvaitro, Set<NguoiDung> nguoiDungs) {
+		super();
+		this.id_vaitro = id_vaitro;
+		this.role = role;
+		this.tenvaitro = tenvaitro;
+		this.nguoiDungs = nguoiDungs;
+	}
+
+
+
 	public VaiTro(int id_vaitro,String role, String tenvaitro) {
 		super();
 		this.id_vaitro = id_vaitro;
@@ -64,12 +76,7 @@ public class VaiTro implements Serializable {
 		this.role = role;
 	}
 
-	public VaiTro(int id_vaitro, String tenvaitro, Set<NguoiDung> nguoiDungs) {
-		super();
-		this.id_vaitro = id_vaitro;
-		this.tenvaitro = tenvaitro;
-		this.nguoiDungs = nguoiDungs;
-	}
+	
 
 	public int getId_vaitro() {
 		return id_vaitro;
