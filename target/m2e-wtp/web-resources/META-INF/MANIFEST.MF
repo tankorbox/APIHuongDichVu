@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: DemoRESTful Maven Webapp
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: HoￃﾠngLinh
+Built-By: Administrator
 Implementation-Vendor-Id: tv.thanh
-Build-Jdk: 1.8.0_60
+Build-Jdk: 1.8.0_101
 Implementation-URL: http://projects.spring.io/spring-boot/DemoRESTful/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.

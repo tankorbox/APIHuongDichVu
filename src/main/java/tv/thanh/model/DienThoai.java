@@ -26,46 +26,46 @@ public class DienThoai {
 
 	@Column
 	String bangtan;
-	
+
 	@Column
 	String chip;
-	
+
 	@Column
 	String cpu;
-	
+
 	@Column
 	String memory;
-	
+
 	@Column
 	String ram;
-	
+
 	@Column
 	String bluetooth;
-	
+
 	@Column
 	String wlan;
-	
+
 	@Column
 	String gps;
-	
+
 	@Column
 	String pin;
-	
+
 	@Column
 	String manhinh;
-	
+
 	@Column
 	String sim;
-	
+
 	@Column
 	String cameratruoc;
-	
+
 	@Column
 	String camerasau;
-	
+
 	@Column
 	String quayphim;
-	
+
 	public DienThoai() {
 		// TODO Auto-generated constructor stub
 	}
@@ -100,8 +100,6 @@ public class DienThoai {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	
 
 	public SanPham getSanpham() {
 		return sanpham;
@@ -230,6 +228,4 @@ public class DienThoai {
 	public void setQuayphim(String quayphim) {
 		this.quayphim = quayphim;
 	}
-	
-	
 }
