@@ -39,7 +39,7 @@ public class QuangCaoController {
 		return quangCaoRepository.save(quangcao);
 	}
 
-	@PostMapping("/update")
+	@RequestMapping(value="/update",method=RequestMethod.PUT)
 	public QuangCao updateQuangCao(@RequestBody QuangCao quangcao) {
 		return quangCaoRepository.save(quangcao);
 	}

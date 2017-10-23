@@ -29,7 +29,7 @@ public class VaiTroController {
 		return vaiTroService.findById(id);
 	}
 	
-	@RequestMapping(value="/insert", method=RequestMethod.POST)
+	@RequestMapping(value="/insert", method=RequestMethod.PUT)
 	public VaiTro insert(@RequestBody VaiTro vaitro) {
 		vaiTroService.insert(vaitro);
 		return vaitro;

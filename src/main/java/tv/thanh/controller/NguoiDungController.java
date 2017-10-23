@@ -72,15 +72,16 @@ public class NguoiDungController {
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public NguoiDung addNguoiDung(@RequestBody NguoiDung nguoidung) {
-		NguoiDung nd = nguoiDungRepository.findOne(nguoidung.getId());
-		if (nd.getTendangnhap().equals(nguoidung.getTendangnhap())) {
-			System.out.println("username duplicated");
-			return null;
+		List<NguoiDung> listND = nguoiDungService.findAll();
+		for (NguoiDung nguoiDung2 : listND) {
+			if (nguoiDung2.getTendangnhap().equals(nguoidung.getTendangnhap())) {
+				return null;
+			}
 		}
 		return nguoiDungRepository.save(nguoidung);
 	}
 	
-	@RequestMapping(value="/update",method=RequestMethod.POST)
+	@RequestMapping(value="/update",method=RequestMethod.PUT)
 	public NguoiDung updateNguoiDung(@RequestBody NguoiDung nguoidung) {
 		return nguoiDungService.update(nguoidung);
 	}

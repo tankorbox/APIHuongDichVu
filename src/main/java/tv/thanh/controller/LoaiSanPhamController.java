@@ -38,7 +38,7 @@ public class LoaiSanPhamController {
 		return loaiSanPhamRepository.save(loaisp);
 	}
 
-	@PostMapping("/update")
+	@RequestMapping(value="/update",method=RequestMethod.PUT)
 	public LoaiSanPham updateLoaiSanPham(@RequestBody LoaiSanPham loaisp) {
 		return loaiSanPhamRepository.save(loaisp);
 	}

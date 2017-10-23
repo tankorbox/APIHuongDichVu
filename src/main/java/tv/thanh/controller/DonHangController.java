@@ -24,10 +24,10 @@ public class DonHangController {
 	private DonHangService donHangService;
 
 	@Autowired
-	private DonHangRepository donHangRepository;
+	private ChiTietDonHangRepository chitietdonhangRepository;
 
 	@Autowired
-	private ChiTietDonHangRepository chitietdonhangRepository;
+	private DonHangRepository donHangRepository;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<DonHang> getAll() {
@@ -63,10 +63,16 @@ public class DonHangController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public DonHang addDonHang(@RequestBody DonHang donhang) {
-		return donHangRepository.save(donhang);
+		DonHang dh = donHangRepository.save(donhang);
+		Set<ChiTietDonHang> listCTDH = donhang.getChiTietDonHangs();
+		for (ChiTietDonHang chiTietDonHang : listCTDH) {
+			chiTietDonHang.setDonhang(dh);
+			chitietdonhangRepository.save(chiTietDonHang);
+		}
+		return dh;
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public DonHang updateDonHang(@RequestBody DonHang donhang) {
 		return donHangRepository.save(donhang);
 	}

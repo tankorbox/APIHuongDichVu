@@ -38,7 +38,7 @@ public class ChiTietDonHangController {
 		return chitietdonhangRepository.save(donhang);
 	}
 	
-	@RequestMapping(value="/update", method=RequestMethod.POST)
+	@RequestMapping(value="/update", method=RequestMethod.PUT)
 	public ChiTietDonHang updateChiTietDonHang(@RequestBody ChiTietDonHang chiTietDonHang) {
 		return chitietdonhangRepository.save(chiTietDonHang);
 	}
