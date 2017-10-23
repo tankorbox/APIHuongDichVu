@@ -30,8 +30,8 @@ public class SanPham {
 	@Column
 	String hinhanh;
 	
-	@Column
-	String danhsachhinhanh;
+//	@Column
+//	String danhsachhinhanh;
 
 
 	@ManyToOne
@@ -70,13 +70,13 @@ public class SanPham {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SanPham(int id, String tensanpham, String hinhanh, String danhsachhinhanh, LoaiSanPham loaiSanPham, int luotxem,
+	public SanPham(int id, String tensanpham, String hinhanh, LoaiSanPham loaiSanPham, int luotxem,
 			int soluongdaban, int gia, int soluongconlai, int type) {
 		super();
 		this.id = id;
 		this.tensanpham = tensanpham;
 		this.hinhanh = hinhanh;
-		this.danhsachhinhanh = danhsachhinhanh;
+//		this.danhsachhinhanh = danhsachhinhanh;
 		this.loaiSanPham = loaiSanPham;
 		this.luotxem = luotxem;
 		this.soluongdaban = soluongdaban;
@@ -109,13 +109,13 @@ public class SanPham {
 		this.hinhanh = hinhanh;
 	}
 
-	public String getDanhsachhinhanh() {
-		return danhsachhinhanh;
-	}
-
-	public void setDanhsachhinhanh(String danhsachhinhanh) {
-		this.danhsachhinhanh = danhsachhinhanh;
-	}
+//	public String getDanhsachhinhanh() {
+//		return danhsachhinhanh;
+//	}
+//
+//	public void setDanhsachhinhanh(String danhsachhinhanh) {
+//		this.danhsachhinhanh = danhsachhinhanh;
+//	}
 
 	
 	public LoaiSanPham getLoaiSanPham() {

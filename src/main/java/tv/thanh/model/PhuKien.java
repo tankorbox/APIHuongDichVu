@@ -21,8 +21,6 @@ public class PhuKien {
 	@JoinColumn(name = "id_sanpham")
 	SanPham sanpham;
 
-	@Column
-	String mota;
 
 	@Column
 	String loailienquan;
@@ -30,17 +28,30 @@ public class PhuKien {
 	@Column
 	String dienthoailienquan;
 	
+	@Column
+	String danhgia;
+	
 	public PhuKien() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PhuKien(int id, SanPham sanpham, String mota, String loailienquan, String dienthoailienquan) {
+	public PhuKien(int id, SanPham sanpham, String loailienquan, String dienthoailienquan,String danhgia) {
 		super();
 		this.id = id;
 		this.sanpham = sanpham;
-		this.mota = mota;
 		this.loailienquan = loailienquan;
 		this.dienthoailienquan = dienthoailienquan;
+		this.danhgia= danhgia;
+	}
+	
+	
+
+	public String getDanhgia() {
+		return danhgia;
+	}
+
+	public void setDanhgia(String danhgia) {
+		this.danhgia = danhgia;
 	}
 
 	public int getId() {
@@ -61,14 +72,6 @@ public class PhuKien {
 		this.sanpham = sanpham;
 	}
 
-	public String getMota() {
-		return mota;
-	}
-
-	public void setMota(String mota) {
-		this.mota = mota;
-	}
-
 	public String getLoailienquan() {
 		return loailienquan;
 	}
@@ -84,6 +87,4 @@ public class PhuKien {
 	public void setDienthoailienquan(String dienthoailienquan) {
 		this.dienthoailienquan = dienthoailienquan;
 	}
-
-	
 }
