@@ -1,5 +1,6 @@
 package tv.thanh.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import tv.thanh.model.DienThoai;
 import tv.thanh.model.PhuKien;
+import tv.thanh.model.SanPham;
 import tv.thanh.repository.PhuKienRepository;
+import tv.thanh.repository.SanPhamRepository;
 import tv.thanh.service.PhuKienService;
 
 @RestController
@@ -22,6 +27,9 @@ public class PhuKienController {
 
 	@Autowired
 	private PhuKienRepository phuKienRepository;
+	
+	@Autowired
+	private SanPhamRepository sanPhamRepository;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<PhuKien> getAll() {
@@ -34,25 +42,46 @@ public class PhuKienController {
 	}
 
 	@RequestMapping(value = "/byidsanpham/{id_sanpham}", method = RequestMethod.GET)
-	public PhuKien getByIdPhuKien(@PathVariable("id_sanpham") int idsp) {
-		List<PhuKien> phuKiens = phuKienService.findAll();
-		PhuKien pk = new PhuKien();
-		for (PhuKien d : phuKiens) {
-			if (idsp == d.getSanpham().getId()) {
-				pk = d;
+	public PhuKien getByIdSanPham(@PathVariable("id_sanpham") int idsp) {
+		List<PhuKien> phuKiens = phuKienRepository.findAll();
+		PhuKien dt = new PhuKien();
+		for (PhuKien p : phuKiens) {
+			if (idsp == p.getSanpham().getId()) {
+				dt = p;
 				break;
 			}
 		}
-		return pk;
+		return dt;
+	}
+	
+	@RequestMapping(value="/phukienlienquansanpham/{idsp}")
+	public List<PhuKien> getListPhuKienLienQuanDienThoai(@PathVariable("idsp") String idsp){
+		List<PhuKien> ketqua = new ArrayList<>();
+		List<PhuKien> listPK = phuKienRepository.findAll();
+		for (PhuKien phuKien : listPK) {
+			String str = phuKien.getDienthoailienquan();
+			String [] arrayStr = str.split(",");
+			for (String s: arrayStr) {
+				if (s.equals(idsp)) {
+					ketqua.add(phuKien);
+					break;
+				}
+			}
+		}
+		
+		return ketqua;
 	}
 
 	@PostMapping("/add")
 	public PhuKien addPhuKien(@RequestBody PhuKien phukien) {
+		SanPham sanpham  = sanPhamRepository.save(phukien.getSanpham());
+		phukien.setSanpham(sanpham);
 		return phuKienRepository.save(phukien);
 	}
 
-	@PostMapping("/update")
+	@RequestMapping(value="/update",method=RequestMethod.PUT)
 	public PhuKien updatePhuKien(@RequestBody PhuKien phukien) {
+		sanPhamRepository.save(phukien.getSanpham());
 		return phuKienRepository.save(phukien);
 	}
 

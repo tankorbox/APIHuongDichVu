@@ -70,7 +70,7 @@ public class DonHangController {
 		return dh;
 	}
 	
-	@RequestMapping(value="/update", method=RequestMethod.POST)
+	@RequestMapping(value="/update", method=RequestMethod.PUT)
 	public DonHang updateDonHang(@RequestBody DonHang donhang) {
 		return donHangRepository.save(donhang);
 	}

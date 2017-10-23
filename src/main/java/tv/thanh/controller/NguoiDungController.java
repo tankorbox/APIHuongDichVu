@@ -81,7 +81,7 @@ public class NguoiDungController {
 		return nguoiDungRepository.save(nguoidung);
 	}
 	
-	@RequestMapping(value="/update",method=RequestMethod.POST)
+	@RequestMapping(value="/update",method=RequestMethod.PUT)
 	public NguoiDung updateNguoiDung(@RequestBody NguoiDung nguoidung) {
 		return nguoiDungService.update(nguoidung);
 	}

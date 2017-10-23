@@ -39,7 +39,7 @@ public class SlideController {
 		return slideRepository.save(slide);
 	}
 
-	@PostMapping("/update")
+	@RequestMapping(value="/update",method=RequestMethod.PUT)
 	public Slide updateSlide(@RequestBody Slide slide) {
 		return slideRepository.save(slide);
 	}
