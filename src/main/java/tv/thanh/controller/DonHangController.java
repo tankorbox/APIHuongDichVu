@@ -2,6 +2,7 @@ package tv.thanh.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import tv.thanh.model.ChiTietDonHang;
 import tv.thanh.model.DonHang;
+import tv.thanh.repository.ChiTietDonHangRepository;
 import tv.thanh.repository.DonHangRepository;
 import tv.thanh.service.DonHangService;
 
@@ -19,6 +22,9 @@ import tv.thanh.service.DonHangService;
 public class DonHangController {
 	@Autowired
 	private DonHangService donHangService;
+	
+	@Autowired
+	private ChiTietDonHangRepository chitietdonhangRepository;
 	
 	@Autowired
 	private DonHangRepository donHangRepository;
@@ -55,7 +61,13 @@ public class DonHangController {
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public DonHang addDonHang(@RequestBody DonHang donhang) {
-		return donHangRepository.save(donhang);
+		DonHang dh = donHangRepository.save(donhang);
+		Set<ChiTietDonHang> listCTDH = donhang.getChiTietDonHangs();
+		for (ChiTietDonHang chiTietDonHang : listCTDH) {
+			chiTietDonHang.setDonhang(dh);
+			chitietdonhangRepository.save(chiTietDonHang);
+		}
+		return dh;
 	}
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
