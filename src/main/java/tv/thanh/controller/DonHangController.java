@@ -85,18 +85,4 @@ public class DonHangController {
 		donHangRepository.delete(id);
 		return "success";
 	}
-
-	@RequestMapping(value = "/add2", method = RequestMethod.POST)
-	public DonHang addDonHang2(@RequestBody DonHang donhang) {
-		Set<ChiTietDonHang> ctdh = donhang.getChiTietDonHangs();
-		System.out.println(ctdh.toString());
-		Set<ChiTietDonHang> ctdh2 = null;
-		for (ChiTietDonHang chitiet : ctdh) {
-			chitiet.setId(0);
-			ChiTietDonHang ct = chitietdonhangRepository.save(chitiet);
-			ctdh2.add(ct);
-		}
-		donhang.setChiTietDonHangs(ctdh2);
-		return donHangRepository.save(donhang);
-	}
 }
