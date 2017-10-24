@@ -20,57 +20,57 @@ import tv.thanh.service.NguoiDungService;
 public class NguoiDungController {
 	@Autowired
 	private NguoiDungService nguoiDungService;
-	
+
 	@Autowired
 	private NguoiDungRepository nguoiDungRepository;
-	
-	@RequestMapping(value="", method=RequestMethod.GET)
-	public List<NguoiDung> getAll(){
+
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public List<NguoiDung> getAll() {
 		return (List<NguoiDung>) nguoiDungService.findAll();
 	}
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public NguoiDung getById(@PathVariable("id") int id) {
 		return nguoiDungService.findById(id);
 	}
-	
-	@RequestMapping(value="/getbyfullname",consumes= {"multipart/form-data"},method=RequestMethod.POST)
+
+	@RequestMapping(value = "/getbyfullname", consumes = { "multipart/form-data" }, method = RequestMethod.POST)
 	public List<NguoiDung> getByName(@RequestPart String name) {
 		List<NguoiDung> nguoiDungs = nguoiDungService.findAll();
 		List<NguoiDung> ketqua = new ArrayList<>();
-		for (NguoiDung nDung: nguoiDungs) {
+		for (NguoiDung nDung : nguoiDungs) {
 			if (nDung.getTendaydu().contains(name)) {
 				ketqua.add(nDung);
 			}
 		}
 		return ketqua;
 	}
-	
-	@RequestMapping(value="/getbyusername/{name}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/getbyusername/{name}", method = RequestMethod.GET)
 	public List<NguoiDung> getByUsername(@PathVariable("name") String name) {
 		List<NguoiDung> nguoiDungs = nguoiDungService.findAll();
 		List<NguoiDung> ketqua = new ArrayList<>();
-		for (NguoiDung nDung: nguoiDungs) {
+		for (NguoiDung nDung : nguoiDungs) {
 			if (nDung.getTendangnhap().equals(name)) {
 				ketqua.add(nDung);
 			}
 		}
 		return ketqua;
 	}
-	
-	@RequestMapping(value="/getbyvaitro/{vaitro}",method=RequestMethod.GET)
+
+	@RequestMapping(value = "/getbyvaitro/{vaitro}", method = RequestMethod.GET)
 	public List<NguoiDung> getByVaitro(@PathVariable("vaitro") int vaitro) {
 		List<NguoiDung> nguoiDungs = nguoiDungService.findAll();
 		List<NguoiDung> ketqua = new ArrayList<>();
-		for (NguoiDung nDung: nguoiDungs) {
+		for (NguoiDung nDung : nguoiDungs) {
 			if (nDung.getVaitro().getId_vaitro() == vaitro) {
 				ketqua.add(nDung);
 			}
 		}
 		return ketqua;
 	}
-	
-	@RequestMapping(value="/add",method=RequestMethod.POST)
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public NguoiDung addNguoiDung(@RequestBody NguoiDung nguoidung) {
 		List<NguoiDung> listND = nguoiDungService.findAll();
 		for (NguoiDung nguoiDung2 : listND) {
@@ -80,19 +80,31 @@ public class NguoiDungController {
 		}
 		return nguoiDungRepository.save(nguoidung);
 	}
-	
-	@RequestMapping(value="/update",method=RequestMethod.PUT)
+
+	@RequestMapping(value = "/update", method = RequestMethod.PUT)
 	public NguoiDung updateNguoiDung(@RequestBody NguoiDung nguoidung) {
 		return nguoiDungService.update(nguoidung);
 	}
-	
-	@RequestMapping(value="/delete/{id}",method=RequestMethod.DELETE)
+
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public String deleteNguoiDung(@PathVariable("id") int id) {
 		NguoiDung nguoiDung = nguoiDungRepository.findOne(id);
-		if (nguoiDung==null) {
+		if (nguoiDung == null) {
 			return "not found";
 		}
 		nguoiDungRepository.delete(id);
 		return "success";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public boolean checkLogin(@RequestBody NguoiDung nguoidung) {
+		List<NguoiDung> listND = nguoiDungService.findAll();
+		for (NguoiDung nguoiDung2 : listND) {
+			if (nguoiDung2.getTendangnhap().equals(nguoidung.getTendangnhap())
+					&& nguoiDung2.getMatkhau().equals(nguoidung.getMatkhau())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
